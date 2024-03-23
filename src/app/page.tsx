@@ -13,6 +13,9 @@ export default function page(){
   const [validURL , setValidURL] = useState<String | null>(null)
   const [filename , setFilename] = useState("")
   const [customFilename , setCustomFilename] = useState("")
+  const [isDisabled , setIsDisabled] = useState("disabled")
+
+
   async function getQRofURL(url:string) {
     const qr = await QRCode.toDataURL(url , {
       width : 400,
@@ -38,6 +41,7 @@ export default function page(){
     }
 
     if(url != ""){
+      document.getElementById("download")?.removeAttribute("disabled")
       doItwithAsync()
       try{
         const newURL = new URL(url)
@@ -49,6 +53,7 @@ export default function page(){
       }
     }
     else {
+      document.getElementById("download")?.setAttribute("disabled" , "disabled")
       setFilename("untitled")
       setValidURL(null)
     }
@@ -109,7 +114,7 @@ export default function page(){
       </div>
       <button onClick={()=>{
         FileSaver.saveAs(QRwithTitle , `${customFilename === "" ? filename : customFilename}.png`)
-      }} className="bg-white mt-3 rounded-md px-2">Download</button>
+      }} className="bg-white mt-3 rounded-md px-2 disabled:bg-gray-300 disabled:text-red disabled:cursor-not-allowed"  id="download">Download</button>
     </div>
   )
 }
