@@ -11,7 +11,7 @@ export default function page(){
   const [title , setTitle] = useState("")
   const [url , setURL] = useState("")
   const [validURL , setValidURL] = useState<String | null>(null)
-  const [filename , setFielname] = useState("")
+  const [filename , setFilename] = useState("")
   const [customFilename , setCustomFilename] = useState("")
   async function getQRofURL(url:string) {
     const qr = await QRCode.toDataURL(url , {
@@ -41,7 +41,7 @@ export default function page(){
       doItwithAsync()
       try{
         const newURL = new URL(url)
-        setFielname(newURL.hostname)
+        setFilename(newURL.hostname)
         setValidURL(null)
       }
       catch{
@@ -49,7 +49,7 @@ export default function page(){
       }
     }
     else {
-      setFielname("untitled")
+      setFilename("untitled")
       setValidURL(null)
     }
 
@@ -59,6 +59,16 @@ export default function page(){
     //@ts-ignore
     document.getElementById("urlform").value = ""
     setURL("")
+  }
+  function clearTitle(){
+    //@ts-ignore
+    document.getElementById("titleform").value = ""
+    setTitle("")
+  }
+  function clearCustomFilename(){
+    //@ts-ignore
+    document.getElementById("customfilenameform").value = ""
+    setCustomFilename("")
   }
 
 
@@ -71,15 +81,18 @@ export default function page(){
 
       <div className="flex flex-col items-center">
         <label htmlFor="title" className="text-white">setTitle</label>
-        <input name="title" type="text" className="border border-blue-500 rounded-md" maxLength={25} onChange={e =>{
-          setTitle(e.target.value)
-        }} />
+        <div className="flex flex-row">
+          <input name="title" id="titleform" type="text" className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
+            setTitle(e.target.value)
+          }} />
+          <button className="bg-white ml-2 rounded-md md:px-2 px-1" onClick={ clearTitle }>clear</button>
+        </div>
       </div>
       <div className="flex flex-col items-center">
         <label htmlFor="url" className="text-white">setURL</label>
         {validURL != null ? <p className="text-red-500">{validURL}</p> : null}
         <div className="flex flex-row">
-          <input name="url" id="urlform" type="text" className="border border-blue-500 rounded-md ml-16 mr-1" onChange={e =>{
+          <input name="url" id="urlform" type="text" className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
             setURL(e.target.value)
           }} />
           <button className="bg-white ml-2 rounded-md md:px-2 px-1" onClick={ clearURL }>clear</button>
@@ -87,9 +100,12 @@ export default function page(){
       </div>
       <div className="flex flex-col items-center">
         <label htmlFor="title" className="text-white">setFilename</label>
-        <input name="title" type="text" className="border border-blue-500 rounded-md" maxLength={25} onChange={e =>{
-          setCustomFilename(e.target.value)
-        }} />
+        <div className="flex flex-row">
+          <input name="customfilename" id="customfilenameform" type="text" className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
+            setCustomFilename(e.target.value)
+          }} />
+          <button className="bg-white ml-2 rounded-md md:px-2 px-1" onClick={ clearCustomFilename }>clear</button>
+        </div>
       </div>
       <button onClick={()=>{
         FileSaver.saveAs(QRwithTitle , `${customFilename === "" ? filename : customFilename}.png`)
