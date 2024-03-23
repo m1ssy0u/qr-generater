@@ -11,6 +11,7 @@ export default function page(){
   const [title , setTitle] = useState("")
   const [url , setURL] = useState("")
   const [validURL , setValidURL] = useState<String | null>(null)
+  const [filename , setFielname] = useState("")
 
   async function getQRofURL(url:string) {
     const qr = await QRCode.toDataURL(url , {
@@ -39,7 +40,8 @@ export default function page(){
     if(url != ""){
       doItwithAsync()
       try{
-        new URL(url)
+        const newURL = new URL(url)
+        setFielname(newURL.hostname)
         setValidURL(null)
       }
       catch{
@@ -83,7 +85,7 @@ export default function page(){
         </div>
       </div>
       <button onClick={()=>{
-        FileSaver.saveAs(QRwithTitle , "image.png")
+        FileSaver.saveAs(QRwithTitle , `${filename}.png`)
       }} className="bg-white mt-3 rounded-md px-2">Download</button>
     </div>
   )
