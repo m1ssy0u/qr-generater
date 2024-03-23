@@ -12,7 +12,7 @@ export default function page(){
   const [url , setURL] = useState("")
   const [validURL , setValidURL] = useState<String | null>(null)
   const [filename , setFielname] = useState("")
-
+  const [customFilename , setCustomFilename] = useState("")
   async function getQRofURL(url:string) {
     const qr = await QRCode.toDataURL(url , {
       width : 400,
@@ -49,6 +49,7 @@ export default function page(){
       }
     }
     else {
+      setFielname("untitled")
       setValidURL(null)
     }
 
@@ -84,8 +85,14 @@ export default function page(){
           <button className="bg-white ml-2 rounded-md md:px-2 px-1" onClick={ clearURL }>clear</button>
         </div>
       </div>
+      <div className="flex flex-col items-center">
+        <label htmlFor="title" className="text-white">setFilename</label>
+        <input name="title" type="text" className="border border-blue-500 rounded-md" maxLength={25} onChange={e =>{
+          setCustomFilename(e.target.value)
+        }} />
+      </div>
       <button onClick={()=>{
-        FileSaver.saveAs(QRwithTitle , `${filename}.png`)
+        FileSaver.saveAs(QRwithTitle , `${customFilename === "" ? filename : customFilename}.png`)
       }} className="bg-white mt-3 rounded-md px-2">Download</button>
     </div>
   )
