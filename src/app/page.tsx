@@ -71,6 +71,7 @@ export default function page(){
     setTitle("")
   }
   function clearCustomFilename(){
+
     //@ts-ignore
     document.getElementById("customfilenameform").value = ""
     setCustomFilename("")
@@ -87,7 +88,7 @@ export default function page(){
       <div className="flex flex-col items-center">
         <label htmlFor="title" className="text-white">setTitle</label>
         <div className="flex flex-row">
-          <input name="title" id="titleform" type="text" className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
+          <input name="title" id="titleform" type="text" maxLength={20} className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
             setTitle(e.target.value)
           }} />
           <button className="bg-white ml-2 rounded-md md:px-2 px-1" onClick={ clearTitle }>clear</button>
