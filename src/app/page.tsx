@@ -79,7 +79,7 @@ export default function page(){
 
 
   return (
-    <div className="bg-slate-600 md:h-screen h-fit md:pb-0 pb-24 flex flex-col items-center pt-24 md:w-auto">
+    <div className="bg-slate-600 md:h-full h-fit md:pb-0 pb-24 flex flex-col items-center pt-24 md:w-auto">
       <div id="qr" className="bg-white h-fit flex flex-col items-center md:w-auto w-11/12">
           {url == "" ? <h1 className="w-400 h-400 text-center"><p className="pt-48">Your qrcode show here!!</p></h1> : <Image src={QR} width={400} height={400} alt =""></Image>}
           {title === "" ? null : <h1 className="font-bold text-2xl pt-0 py-0">{title}</h1>}
