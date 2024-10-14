@@ -105,6 +105,7 @@ export default function page(){
         </div>
       </div>
       <div className="flex flex-col items-center">
+        <p>แนะนำให้ใช้งานด้วยคอมพิวเตอร์ อาจเกิดข้อผิดพลาดในบางอุปกรณ์</p>
         <label htmlFor="title" className="text-white">setFilename</label>
         <div className="flex flex-row">
           <input name="customfilename" id="customfilenameform" type="text" className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
@@ -112,9 +113,6 @@ export default function page(){
           }} />
           <button className="bg-white ml-2 rounded-md md:px-2 px-1" onClick={ clearCustomFilename }>clear</button>
         </div>
-      </div>
-      <div>
-        <p>แนะนำให้ใช้งานด้วยคอมพิวเตอร์ อาจเกิดข้อผิดพลาดในบางอุปกรณ์</p>
       </div>
       <button onClick={()=>{
         FileSaver.saveAs(QRwithTitle , `${customFilename === "" ? filename : customFilename}.png`)
