@@ -84,8 +84,10 @@ export default function page(){
           {url == "" ? <h1 className="w-400 h-400 text-center"><p className="pt-48">Your qrcode show here!!</p></h1> : <Image src={QR} width={400} height={400} alt =""></Image>}
           {title === "" ? null : <h1 className="font-bold text-2xl pt-0 py-0">{title}</h1>}
       </div>
-
+      
       <div className="flex flex-col items-center">
+        <p>แนะนำให้ใช้งานด้วยคอมพิวเตอร์</p>
+        <p>อาจเกิดข้อผิดพลาดในบางอุปกรณ์</p>
         <label htmlFor="title" className="text-white">setTitle</label>
         <div className="flex flex-row">
           <input name="title" id="titleform" type="text" maxLength={20} className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
@@ -105,7 +107,6 @@ export default function page(){
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <p>แนะนำให้ใช้งานด้วยคอมพิวเตอร์ อาจเกิดข้อผิดพลาดในบางอุปกรณ์</p>
         <label htmlFor="title" className="text-white">setFilename</label>
         <div className="flex flex-row">
           <input name="customfilename" id="customfilenameform" type="text" className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
