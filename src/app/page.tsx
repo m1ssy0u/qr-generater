@@ -115,7 +115,7 @@ export default function page(){
       </div>
       <button onClick={()=>{
         FileSaver.saveAs(QRwithTitle , `${customFilename === "" ? filename : customFilename}.png`)
-      }} className="bg-white mt-3 rounded-md px-2 disabled:bg-gray-300 disabled:text-red disabled:cursor-not-allowed"  id="download">Download</button>
+      }} className="bg-white mb-9 mt-3 rounded-md px-2 disabled:bg-gray-300 disabled:text-red disabled:cursor-not-allowed"  id="download">Download</button>
     </div>
   )
 }
