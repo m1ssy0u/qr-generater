@@ -113,6 +113,9 @@ export default function page(){
           <button className="bg-white ml-2 rounded-md md:px-2 px-1" onClick={ clearCustomFilename }>clear</button>
         </div>
       </div>
+      <div>
+        <p>แนะนำให้ใช้งานด้วยคอมพิวเตอร์ อาจเกิดข้อผิดพลาดในบางอุปกรณ์</p>
+      </div>
       <button onClick={()=>{
         FileSaver.saveAs(QRwithTitle , `${customFilename === "" ? filename : customFilename}.png`)
       }} className="bg-white mb-9 mt-3 rounded-md px-2 disabled:bg-gray-300 disabled:text-red disabled:cursor-not-allowed"  id="download">Download</button>
