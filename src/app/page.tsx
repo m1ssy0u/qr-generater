@@ -27,7 +27,7 @@ export default function page(){
 
   async function getImageFromElement(id : any){
     const e = document.getElementById(id) as HTMLElement
-    const image = toPng(e)
+    const image = await toPng(e)
 
     return image
   }
@@ -79,9 +79,9 @@ export default function page(){
 
 
   return (
-    <div className="bg-slate-600 md:h-screen h-fit md:pb-0 pb-24 flex flex-col items-center pt-24 md:w-auto">
+    <div className="bg-gray-900 md:h-fit md:pb-20 h-fit md:pt-11 flex flex-col items-center pt-24 md:w-auto">
       <div id="qr" className="bg-white h-fit flex flex-col items-center md:w-auto w-11/12">
-          {url == "" ? <h1 className="w-400 h-400 text-center"><p className="pt-48">Your qrcode show here!!</p></h1> : <Image src={QR} width={400} height={400} alt =""></Image>}
+          {url == "" ? <h1 className="w-400 h-400 text-center"><p className="pt-48">Your qrcode show here!!</p></h1> : <Image src={QR} width={400} height={400} alt="qrcode"></Image>}
           {title === "" ? null : <h1 className="font-bold text-2xl pt-0 py-0">{title}</h1>}
       </div>
 
@@ -96,7 +96,7 @@ export default function page(){
       </div>
       <div className="flex flex-col items-center">
         <label htmlFor="url" className="text-white">setURL</label>
-        {validURL != null ? <p className="text-red-500">{validURL}</p> : null}
+          {validURL != null ? <p className="text-red-500">{validURL}</p> : null}
         <div className="flex flex-row">
           <input name="url" id="urlform" type="text" className="border border-blue-500 rounded-md ml-14mr-1" onChange={e =>{
             setURL(e.target.value)
